@@ -1,26 +1,193 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #F6F8FC;
+    --foreground: #12213F;
+    --card: #FFFFFF;
+    --card-foreground: #12213F;
+    --popover: #FFFFFF;
+    --popover-foreground: #12213F;
+    --primary: #1B2F5B; /* brand-navy */
+    --primary-foreground: #FFFFFF;
+    --secondary: #E8EDF7;
+    --secondary-foreground: #12213F;
+    --muted: #E8EDF7;
+    --muted-foreground: #5B6B84;
+    --accent: #2F5BD0; /* brand-blue */
+    --accent-foreground: #FFFFFF;
+    --destructive: #F25C6B;
+    --destructive-foreground: #FFFFFF;
+    --border: rgba(27, 47, 91, 0.12);
+    --input: rgba(27, 47, 91, 0.15);
+    --ring: #2F5BD0;
+    --radius: 0.625rem;
+
+    /* IF/ELSE Brand Tokens */
+    --brand-navy: #1B2F5B;
+    --brand-navy-deep: #12213F;
+    --brand-blue: #2F5BD0;
+    --brand-sky: #6FA0FF;
+    --brand-success: #2DD4A0;
+    --brand-warning: #F5B544;
+    --brand-danger: #F25C6B;
+
+    --brand-electric: #2F5BD0;
+    --brand-electric-hover: #1B2F5B;
+    --brand-blue-light: #6FA0FF;
+
+    --surface-glass: rgba(255, 255, 255, 0.92);
+    --surface-glass-border: rgba(27, 47, 91, 0.1);
+  }
+
+  .dark {
+    --background: #080b12; /* base */
+    --foreground: #E8EDF7; /* text */
+    --card: #0F1522; /* surface */
+    --card-foreground: #E8EDF7;
+    --popover: #0F1522;
+    --popover-foreground: #E8EDF7;
+    --primary: #2F5BD0; /* brand-blue (primary action in dark mode) */
+    --primary-foreground: #FFFFFF;
+    --secondary: #151D2E; /* surface raised */
+    --secondary-foreground: #E8EDF7;
+    --muted: #151D2E;
+    --muted-foreground: #8B97AD; /* muted */
+    --accent: #6FA0FF; /* brand-sky (accents, links, focus rings, glows in dark mode) */
+    --accent-foreground: #080b12;
+    --destructive: #F25C6B;
+    --destructive-foreground: #FFFFFF;
+    --border: rgba(255, 255, 255, 0.08);
+    --input: rgba(255, 255, 255, 0.12);
+    --ring: #6FA0FF;
+
+    /* IF/ELSE Brand Tokens */
+    --brand-navy: #1B2F5B;
+    --brand-navy-deep: #12213F;
+    --brand-blue: #2F5BD0;
+    --brand-sky: #6FA0FF;
+    --brand-success: #2DD4A0;
+    --brand-warning: #F5B544;
+    --brand-danger: #F25C6B;
+
+    --brand-electric: #2F5BD0;
+    --brand-electric-hover: #264bb3;
+    --brand-blue-light: #6FA0FF;
+
+    --surface-glass: rgba(15, 21, 34, 0.82);
+    --surface-glass-border: rgba(255, 255, 255, 0.08);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@theme {
+  --font-display: var(--font-outfit), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-mono), "Fira Code", monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-brand-navy: #1B2F5B;
+  --color-brand-navy-deep: #12213F;
+  --color-brand-blue: #2F5BD0;
+  --color-brand-sky: #6FA0FF;
+  --color-brand-success: #2DD4A0;
+  --color-brand-warning: #F5B544;
+  --color-brand-danger: #F25C6B;
+
+  --color-brand-surface: #0F1522;
+  --color-brand-surface-raised: #151D2E;
+  --color-brand-border: rgba(255, 255, 255, 0.08);
+
+  --color-brand-electric: #2F5BD0;
+  --color-brand-blue-light: #6FA0FF;
+  --color-brand-emerald: #2DD4A0;
+  --color-brand-amber: #F5B544;
+}
+
+/* Glass & Lab Utility Classes */
+.glass-panel {
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--surface-glass-border);
+}
+
+.glass-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08);
+}
+
+.dark .glass-card {
+  background: rgba(15, 21, 34, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.5);
+}
+
+/* Branching logic connectors */
+.branch-line-vertical {
+  width: 2px;
+  background: linear-gradient(180deg, var(--brand-blue) 0%, rgba(111, 160, 255, 0.2) 100%);
+}
+
+.branch-node {
+  border: 1px solid rgba(111, 160, 255, 0.4);
+  box-shadow: 0 0 12px rgba(111, 160, 255, 0.2);
+}
+
+/* Logic Badge / Monospace Accents */
+.mono-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.4);
+}
+
+/* Accessible focus ring */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
